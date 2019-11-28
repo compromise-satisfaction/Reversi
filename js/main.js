@@ -67,7 +67,6 @@ function Load(width,height){
       Set_button4.x = 105;
       Set_button4.y = 545;
       Set_button4.frame = 12;
-      scene.addChild(Set_button4);
       Set_button4.addEventListener('touchstart',function(e){
         core.replaceScene(MainScene());
       });
@@ -656,6 +655,7 @@ function Load(width,height){
             if(V_or_D.frame==1) V_or_D.frame = 4;
           }
           scene.addChild(V_or_D);
+          scene.addChild(Set_button4);
           console.log(Black_Number);
           console.log(White_Number);
       }
