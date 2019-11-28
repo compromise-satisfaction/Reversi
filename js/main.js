@@ -10,6 +10,7 @@ function Load(width,height){
     var MainScene = function(){
       var scene = new Scene();                                // 新しいシーンを作る
 
+      var Saikyo = false;
       var AI = 100;//AIの先攻後攻設定
       var okerutenmetu = 0;//置ける場所の表示
       var kazutenmetu = 0;//置ける場所にひっくり返る数表示
@@ -671,7 +672,10 @@ function Load(width,height){
           else V_or_D.frame = 3;
           if(Hand.frame==6||Hand.frame==8){
             if(V_or_D.frame==2) V_or_D.frame = 0;
-            if(V_or_D.frame==1) V_or_D.frame = 4;
+            if(V_or_D.frame==1){
+              V_or_D.frame = 4;
+              if(Saikyo) V_or_D.frame = 5;
+            }
           }
           scene.addChild(V_or_D);
           console.log(Black_Number);
@@ -787,6 +791,7 @@ function Load(width,height){
           }
         }
         if(Set_button5.intersect(Pointer)&&bamen==2&&Time>0){
+          Saikyo = true;
           hyouzisuru();
           Stones[0][0].ura = AI;
           Stones[0][0].frame = AI;
