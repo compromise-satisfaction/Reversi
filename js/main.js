@@ -4,7 +4,7 @@ enchant()
 
 function Load(width,height){
   var core = new Core(width, height);
-  core.preload("image/Reversi.png","image/Set_button.png","image/stone.png","image/Hand.png","image/V_or_D.png");
+  core.preload("image/Reversi.png","image/Set_button.png","image/stone.png","image/Hand.png","image/V_or_D.png","image/白.png");
   core.fps = 10;
   core.onload = function(){
     var MainScene = function(){
@@ -65,11 +65,11 @@ function Load(width,height){
       var Set_button4 = new Sprite(195,95);
       Set_button4.image = core.assets["image/Set_button.png"];
       Set_button4.x = 105;
-      Set_button4.y = 545;
+      Set_button4.y = 455;
       Set_button4.frame = 12;
       scene.addChild(Set_button4);
       Set_button4.addEventListener('touchstart',function(e){
-        core.replaceScene(MainScene());
+        core.pushScene(ReturnScene());
       });
 
       var Stone = Class.create(Sprite, {
@@ -765,6 +765,35 @@ function Load(width,height){
           }
         }
       })
+      return scene;
+    };
+    var ReturnScene = function(){
+      var scene = new Scene();                                // 新しいシーンを作る
+
+      var Reversi = new Sprite(405,550);
+      Reversi.image = core.assets["image/白.png"];
+      scene.addChild(Reversi);
+
+      var Set_button = new Sprite(195,95);
+      Set_button.image = core.assets["image/Set_button.png"];
+      Set_button.x = 105;
+      Set_button.frame = 12;
+      scene.addChild(Set_button);
+      Set_button.addEventListener('touchstart',function(e){
+        core.popScene();
+        core.replaceScene(MainScene());
+      });
+
+      var Set_button1 = new Sprite(195,95);
+      Set_button1.image = core.assets["image/Set_button.png"];
+      Set_button1.x = 105;
+      Set_button1.y = 455;
+      Set_button1.frame = 10;
+      scene.addChild(Set_button1);
+      Set_button1.addEventListener('touchstart',function(e){
+        core.popScene();
+      });
+
       return scene;
     };
     core.replaceScene(MainScene());
