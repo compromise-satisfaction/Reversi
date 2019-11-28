@@ -68,7 +68,7 @@ function resetScreen(gameWidth,gameHeight){
 $(function(){
   //ゲーム内の画面サイズ
   var gameWidth = 405;
-  var gameHeight = 445;
+  var gameHeight = 720;
   //回転時の処理
   var orientationChange = function(){
     //画面サイズ設定
