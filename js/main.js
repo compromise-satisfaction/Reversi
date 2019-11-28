@@ -58,8 +58,8 @@ function Load(width,height){
 
       var Set_button3 = new Sprite(195,95);
       Set_button3.image = core.assets["image/Set_button.png"];
-      Set_button3.x = 105;
-      Set_button3.y = 345;
+      Set_button3.x = 205;
+      Set_button3.y = 145;
       Set_button3.frame = 9;
 
       var Set_button4 = new Sprite(195,95);
@@ -71,6 +71,12 @@ function Load(width,height){
       Set_button4.addEventListener('touchstart',function(e){
         core.pushScene(ReturnScene());
       });
+
+      var Set_button5 = new Sprite(195,95);
+      Set_button5.image = core.assets["image/Set_button.png"];
+      Set_button5.x = 105;
+      Set_button5.y = 245;
+      Set_button5.frame = 11;
 
       var Stone = Class.create(Sprite, {
         initialize: function(x,y,z) {
@@ -172,6 +178,17 @@ function Load(width,height){
         [  0, -3,  0, -1, -1,  0, -3,  0],
         [-12,-15, -3, -3, -3, -3,-15,-12],
         [ 30,-12,  0, -1, -1,  0,-12, 30]
+      ];
+
+      var Cheetah = [
+        [ 0,10,-5, 2, 2,-5,10, 0],
+        [10,-5, 1, 1, 1, 0,-5,10],
+        [-5, 1, 1, 1, 1, 1, 1,-5],
+        [ 2, 1, 1, 1, 1, 1, 1, 2],
+        [ 2, 1, 1, 1, 1, 1, 1, 2],
+        [-5, 1, 1, 1, 1, 1, 1,-5],
+        [10,-5, 1, 1, 1, 1,-5,10],
+        [ 0,10,-5, 2, 2,-5,10, 0]
       ];
 
       for (var x = 0; x < 8; x++) {
@@ -277,6 +294,7 @@ function Load(width,height){
         scene.removeChild(Set_button1);
         scene.removeChild(Set_button2);
         scene.removeChild(Set_button3);
+        scene.removeChild(Set_button5);
         scene.addChild(label1);
         scene.addChild(label2);
         scene.addChild(label3);
@@ -701,12 +719,14 @@ function Load(width,height){
             Set_button.frame  = 7;
             Set_button1.frame = 6;
             Set_button2.frame = 8;
-            Set_button.y = 145;
-            Set_button1.x = 105;
+            Set_button.x = 205;
+            Set_button.y = 45;
+            Set_button1.x = 5;
             Set_button1.y = 45;
-            Set_button2.x = 105;
-            Set_button2.y = 245;
+            Set_button2.x = 5;
+            Set_button2.y = 145;
             scene.addChild(Set_button3);
+            scene.addChild(Set_button5);
           }
           else if(bamen==2&&Time>0){
             hyouzisuru();
@@ -730,12 +750,14 @@ function Load(width,height){
             Set_button.frame  = 7;
             Set_button1.frame = 6;
             Set_button2.frame = 8;
-            Set_button.y = 145;
-            Set_button1.x = 105;
+            Set_button.x = 205;
+            Set_button.y = 45;
+            Set_button1.x = 5;
             Set_button1.y = 45;
-            Set_button2.x = 105;
-            Set_button2.y = 245;
+            Set_button2.x = 5;
+            Set_button2.y = 145;
             scene.addChild(Set_button3);
+            scene.addChild(Set_button5);
           }
           else if(bamen==2&&Time>0){
             hyouzisuru();
@@ -761,6 +783,23 @@ function Load(width,height){
           for (var x = 0; x < 8; x++) {
             for (var y = 0; y < 8; y++) {
               priority[y][x] = priority_otter[y][x];
+            }
+          }
+        }
+        if(Set_button5.intersect(Pointer)&&bamen==2&&Time>0){
+          hyouzisuru();
+          Stones[0][0].ura = AI;
+          Stones[0][0].frame = AI;
+          Stones[0][7].ura = AI;
+          Stones[0][7].frame = AI;
+          Stones[7][0].ura = AI;
+          Stones[7][0].frame = AI;
+          Stones[7][7].ura = AI;
+          Stones[7][7].frame = AI;
+          Hand.frame = 6;
+          for (var x = 0; x < 8; x++) {
+            for (var y = 0; y < 8; y++) {
+              priority[y][x] = Cheetah[y][x];
             }
           }
         }
